@@ -33,13 +33,13 @@ export default class Aumentos extends React.Component<IAumentosProps, any> {
             <Label className={'ms-Grid-col ms-u-sm6 ms-u-md6 ms-u-lg6'}>
               <strong>Producto</strong>              
             </Label>
-            <Label className={'ms-Grid-col ms-u-sm2 ms-u-md2 ms-u-lg2'}>
+            <Label className={'ms-Grid-col ms-u-sm2 ms-u-md2 ms-u-lg2'} style={{textAlign: 'center'}}>
               <strong>Precio</strong>
             </Label>
-            <Label className={'ms-Grid-col ms-u-sm2 ms-u-md2 ms-u-lg2'}>
+            <Label className={'ms-Grid-col ms-u-sm2 ms-u-md2 ms-u-lg2'} style={{textAlign: 'center'}}>
               <strong>Aumento</strong>
             </Label>
-            <Label className={'ms-Grid-col ms-u-sm2 ms-u-md2 ms-u-lg2'}>
+            <Label className={'ms-Grid-col ms-u-sm2 ms-u-md2 ms-u-lg2'} style={{textAlign: 'center'}}>
               <strong>Redondeo</strong>
             </Label>
           </div>
@@ -50,13 +50,13 @@ export default class Aumentos extends React.Component<IAumentosProps, any> {
               <div className={'ms-Grid'} style={{marginLeft: '20px', marginRight: '20px'}}>
                 <div className={'ms-Grid-row'}>
                   <Label className={'ms-Grid-col ms-u-sm6 ms-u-md6 ms-u-lg6'}>{product.Title}</Label>
-                  <Label className={'ms-Grid-col ms-u-sm2 ms-u-md2 ms-u-lg2'} style={{color: 'red'}}>
+                  <Label className={'ms-Grid-col ms-u-sm2 ms-u-md2 ms-u-lg2'} style={{color: 'red', textAlign: 'right'}}>
                     <strong>{product.Precio.toFixed(2)}</strong>
                   </Label>
-                  <Label className={'ms-Grid-col ms-u-sm2 ms-u-md2 ms-u-lg2'} style={{color: 'orange'}}>
+                  <Label className={'ms-Grid-col ms-u-sm2 ms-u-md2 ms-u-lg2'} style={{color: 'orange', textAlign: 'right'}}>
                     <strong>{this.calculateValue(product.Precio)}</strong>
                   </Label>
-                  <Label className={'ms-Grid-col ms-u-sm2 ms-u-md2 ms-u-lg2'} style={{color: 'green'}}>
+                  <Label className={'ms-Grid-col ms-u-sm2 ms-u-md2 ms-u-lg2'} style={{color: 'green', textAlign: 'right'}}>
                     <strong>{this.roundValue(product.Precio)}</strong>
                   </Label>
                 </div>
@@ -70,7 +70,7 @@ export default class Aumentos extends React.Component<IAumentosProps, any> {
           isOpen={ this.state.saving }
           type={ DialogType.normal }
           title='Guardando'
-          subText={ this.state.saving ? 'No cerrar hasta que se termine el proceso...' : 'Completado!' }
+          subText={ !(this.state.saved && this.state.saving) ? 'No cerrar hasta que se termine el proceso...' : 'Completado!' }
           isBlocking={ true }
           containerClassName='ms-dialogMainOverride'
         >
@@ -82,21 +82,19 @@ export default class Aumentos extends React.Component<IAumentosProps, any> {
   }
 
   private componentDidMount = () => 
-    //pnp.sp.web.lists.getByTitle('Productos').items.top(500).orderBy('Categoria').orderBy('Title').get()
-    //Activar versioning
-    pnp.sp.web.lists.getByTitle('ProductosAumentosTest').items.get()
+    pnp.sp.web.lists.getByTitle('Productos').items.top(500).orderBy('Categoria').orderBy('Title').get()
       .then(items => this.setState({examples: items, canPreview: true}));
 
   private updatePrices = () => {
-    pnp.sp.web.lists.getByTitle("ProductosAumentosTest").items.top(500).get().then((items: any[]) => {
+    pnp.sp.web.lists.getByTitle("Productos").items.top(500).get().then((items: any[]) => {
         this.setState({saving: true});
         for(let i = 0; i < items.length; i++){
-          pnp.sp.web.lists.getByTitle("ProductosAumentosTest").items.getById(items[i].Id).update({
+          pnp.sp.web.lists.getByTitle("Productos").items.getById(items[i].Id).update({
             Precio: this.roundValue(items[i].Precio)
           }).then(item => {
             this.setState({completition: (i + 1)/items.length});
             if((i + 1)/items.length == 1)
-              this.setState({saved: true});
+              this.setState({saved: true, completition: 1});
           });
         }
     });

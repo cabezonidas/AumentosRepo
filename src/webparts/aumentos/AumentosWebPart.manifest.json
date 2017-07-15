@@ -9,10 +9,10 @@
 
   "preconfiguredEntries": [{
     "groupId": "1114e7f3-6146-4449-b6b0-adbb378d68d3",
-    "group": { "default": "Under Development" },
+    "group": { "default": "De las Artes" },
     "title": { "default": "Aumentos" },
     "description": { "default": "WebPart para generar aumentos de precios." },
-    "officeFabricIconFontName": "Page",
+    "officeFabricIconFontName": "Money",
     "properties": {
       "description": "Aumentos"
     }
