@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { IAumentosProps } from './IAumentosProps';
-import { escape } from '@microsoft/sp-lodash-subset';
 import pnp from 'sp-pnp-js';
 import { Slider } from 'office-ui-fabric-react/lib/Slider';
 import { Label } from 'office-ui-fabric-react/lib/Label';
@@ -75,7 +74,7 @@ export default class Aumentos extends React.Component<IAumentosProps, any> {
           containerClassName='ms-dialogMainOverride'
         >
           <ProgressIndicator percentComplete={this.state.completition} />
-          <PrimaryButton label='Salir' onClick={()=> {window.location.replace('/')}} disabled={!this.state.saved} />
+          <PrimaryButton label='Salir' onClick={()=> {window.location.replace('/');}} disabled={!this.state.saved} />
         </Dialog>
       </div>
     );
