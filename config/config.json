@@ -1,0 +1,13 @@
+{
+  "entries": [
+    {
+      "entry": "./lib/webparts/aumentos/AumentosWebPart.js",
+      "manifest": "./src/webparts/aumentos/AumentosWebPart.manifest.json",
+      "outputPath": "./dist/aumentos.bundle.js"
+    }
+  ],
+  "externals": {},
+  "localizedResources": {
+    "aumentosStrings": "webparts/aumentos/loc/{locale}.js"
+  }
+}

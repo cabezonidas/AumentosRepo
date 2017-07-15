@@ -1,0 +1,20 @@
+{
+  "$schema": "../../../node_modules/@microsoft/sp-module-interfaces/lib/manifestSchemas/jsonSchemas/clientSideComponentManifestSchema.json",
+
+  "id": "1114e7f3-6146-4449-b6b0-adbb378d68d3",
+  "alias": "AumentosWebPart",
+  "componentType": "WebPart",
+  "version": "0.0.1",
+  "manifestVersion": 2,
+
+  "preconfiguredEntries": [{
+    "groupId": "1114e7f3-6146-4449-b6b0-adbb378d68d3",
+    "group": { "default": "Under Development" },
+    "title": { "default": "Aumentos" },
+    "description": { "default": "WebPart para generar aumentos de precios." },
+    "officeFabricIconFontName": "Page",
+    "properties": {
+      "description": "Aumentos"
+    }
+  }]
+}

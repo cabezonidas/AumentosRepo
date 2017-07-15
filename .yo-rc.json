@@ -1,0 +1,8 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "libraryName": "aumentos-repo",
+    "framework": "react",
+    "version": "1.0.2",
+    "libraryId": "e67fc4f6-14d5-4301-ae51-c0d5fdba5c70"
+  }
+}
